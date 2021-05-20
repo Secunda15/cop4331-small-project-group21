@@ -2,15 +2,15 @@
 
 | Name | Role |
 | --- | --- |
-| Raymond | TBD |
-| Adam | TBD |
-| Lawrence | TBD |
-| David | TBD |
-| Deundre | TBD |
+| Raymond | Project Manager |
+| Adam | API |
+| Lawrence | Frontend |
+| David | TBD 👀 |
+| Deundre | Database |
 ---
 Checklist
-- [ ] Use case diagram (insert link)
-- [ ] Gantt chart (insert link)
-- [ ] ERD (Entity Relationship Diagram) (insert link)
+- [ ] Use case diagram
+- [ ] Gantt chart
+- [ ] ERD (Entity Relationship Diagram)
 - [ ] Powerpoint slides
-- [ ] SwaggerHub Endpoints (insert link)
+- [ ] SwaggerHub Endpoints
