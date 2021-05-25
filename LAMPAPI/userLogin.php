@@ -37,12 +37,14 @@
 		return json_decode(file_get_contents('php://input'), true);
 	}
 
+    // sends json back to javascript file
 	function sendResultInfoAsJson( $obj )
 	{
 		header('Content-type: application/json');
 		echo $obj;
 	}
 	
+    // returns 0 if no user was found 
 	function returnWithError( $err )
 	{
 		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
