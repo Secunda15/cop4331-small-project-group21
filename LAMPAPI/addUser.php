@@ -15,15 +15,15 @@
     }
     else 
     {
-        $sql = "SELECT ID,firstName,lastName FROM Users WHERE firstname=? AND lastname=?";
+        $sql = "SELECT ID,firstName,lastName FROM Users WHERE Login=?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ss", $firstname,$lastname);
+        $stmt->bind_param("s", $login);
         $stmt->execute();
         $result = $stmt->get_result();
 
         if ( $row = $result->fetch_assoc() )
         {
-            returnWithError("User already exists");
+            returnWithError("Username already exists");
         }
         else 
         {
