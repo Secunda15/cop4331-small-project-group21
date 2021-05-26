@@ -109,8 +109,41 @@ function doLogout()
 
 function addUser()
 {
-	
+	var newFirstname = document.getElementById("newFirstname").value;
+	var newLastname = document.getElementById("newLastname").value
+	// var newEmail = document.getElementById("newEmail").value;
+	var newUsername = document.getElementById("newUsername").value;
+	var newPassword = document.getElementById("newPassword").value;
+	document.getElementById("creationResult").innerHTML = "";
+
+	var jsonPayload = '{"firstname" : "' +
+										newFirstname + '{"lastname" : "' +
+										newLastname + '{"login" : "' +
+										newUsername + '{"password" : "' +
+										newPassword + '}';
+	var url = urlBase + '/addUser.' + extension;
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function()
+		{
+			if (this.readyState == 4 && this.status == 200)
+			{
+				document.getElementById("creationResult").innerHTML = "Account Successfully Added";
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		document.getElementById("creationResult").innerHTML = err.message;
+	}
+
 }
+
 
 /*
 function addContact()

@@ -1,7 +1,18 @@
 
 
 <html>
-  <body>
-    <h1> This will be our create account page </h1>
-  </body>
+<head>
+  <title> Account Creation Page </title>
+  <script type="text/javascript" src="js/mainCode.js"></script>
+</head>
+    <body>
+      <input type="text" id="newFirstname"  placeholder="Enter your first name" name="firstname" required>
+      <input type="text" id="newLastname"  placeholder="Enter you last name" name="lastname" required>
+      <!--input type="text" id="newEmail"  placeholder="Enter your email" name="email" required -->
+      <input type="text" id="newUsername"  placeholder="Enter a username" name="newUsername" required>
+      <input type="text" id="newPassword"  placeholder="Enter a password" name="newPassword" required>
+      <button type="submit" onclick="addUser();">Sign Up</button>
+      <span id="creationResult"></span>
+
+    </body>
 </html>
