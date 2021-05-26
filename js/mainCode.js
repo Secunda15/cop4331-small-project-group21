@@ -116,11 +116,10 @@ function addUser()
 	var newPassword = document.getElementById("newPassword").value;
 	document.getElementById("creationResult").innerHTML = "";
 
-	var jsonPayload = '{"firstname" : "' +
-										newFirstname + '{"lastname" : "' +
-										newLastname + '{"login" : "' +
-										newUsername + '{"password" : "' +
-										newPassword + '}';
+	var jsonPayload = '{"firstname" : "' + newFirstname +
+										'"lastname" : "' +	newLastname +
+										'"login" : "' + newUsername +
+										'"password" : "' + newPassword + '}';
 	var url = urlBase + '/addUser.' + extension;
 
 	var xhr = new XMLHttpRequest();
