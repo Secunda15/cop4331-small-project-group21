@@ -15,15 +15,16 @@
     }
     else 
     {
+        // checks to see if login/Username is available
         $sql = "SELECT ID,firstName,lastName FROM Users WHERE Login=?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $login);
         $stmt->execute();
         $result = $stmt->get_result();
-
+        
         if ( $row = $result->fetch_assoc() )
-        {
-            returnWithError("Username already exists");
+        {   
+            returnWithError(true, "Username already exists");
         }
         else 
         {
@@ -32,7 +33,7 @@
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("ssss", $firstname, $lastname, $login, $password);
             $stmt->execute();
-            returnWithError("");
+            returnWithError(false, "");
         }
 
         $stmt->close();
@@ -50,9 +51,10 @@
 		echo $obj;
 	}
 	
-	function returnWithError( $err )
+	function returnWithError( $exists, $err )
 	{
-		$retValue = '{"error":"' . $err . '"}';
+        $retValue = array("exists"=>$exists, "error"=>$err);
+        $retValue = json_encode($retValue);
 		sendResultInfoAsJson( $retValue );
 	}
 ?>
