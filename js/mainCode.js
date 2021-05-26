@@ -109,17 +109,17 @@ function doLogout()
 
 function addUser()
 {
-	var newFirstname = document.getElementById("newFirstname").value;
-	var newLastname = document.getElementById("newLastname").value
+	var firstname = document.getElementById("newFirstname").value;
+	var lastname = document.getElementById("newLastname").value
 	// var newEmail = document.getElementById("newEmail").value;
-	var newUsername = document.getElementById("newUsername").value;
-	var newPassword = document.getElementById("newPassword").value;
+	var login = document.getElementById("newUsername").value;
+	var password = document.getElementById("newPassword").value;
 	document.getElementById("creationResult").innerHTML = "";
 
-	var jsonPayload = '{"firstname" : "' + newFirstname +
-										'"lastname" : "' +	newLastname +
-										'"login" : "' + newUsername +
-										'"password" : "' + newPassword + '}';
+	var jsonPayload = '{"firstName" : "' + newFirstname + '", ' +
+										'"lastName" : "' +	newLastname + '", ' +
+										'"login" : "' + newUsername + '", ' +
+										'"password" : "' + newPassword + '"}';
 	var url = urlBase + '/addUser.' + extension;
 
 	var xhr = new XMLHttpRequest();
