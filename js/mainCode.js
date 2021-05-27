@@ -120,7 +120,8 @@ function addUser()
 	var password = document.getElementById("password").value;
 	document.getElementById("creationResult").innerHTML = "";
 
-	var jsonPayload = '{"firstName" : "' + firstname + '", ' +
+	var jsonPayload =
+	 									'{"firstName" : "' + firstname + '", ' +
 										'"lastName" : "' +	lastname + '", ' +
 										'"login" : "' + login + '", ' +
 										'"password" : "' + password + '"}';
@@ -151,7 +152,7 @@ function addUser()
 
 function addContact()
 {
-    readCookie();
+  readCookie();
 
 	var firstname = document.getElementById("firstname").value;
 	var lastname = document.getElementById("lastname").value
@@ -159,10 +160,17 @@ function addContact()
 	var phonenumber = document.getElementById("phonenumber").value;
 	document.getElementById("contactResult").innerHTML = "";
 
-	var jsonPayload = '{"firstName" : "' + firstname + '", ' +
+	if (firstname == "" || lastname == "" || email == "" || phonenumber == "")
+	{
+		document.getElementById("contactResult").innerHTML = "Entries cannot be blank";
+		return;
+	}
+
+	var jsonPayload =
+										'{"firstName" : "' + firstname + '", ' +
 										'"lastName" : "' +	lastname + '", ' +
 										'"email" : "' + email + '", ' +
-										'"phonenumber" : "' + phonenumber + '", ' +
+										'"phone" : "' + phonenumber + '", ' +
 										'"userId" : "' + userId + '"}';
 	var url = urlBase + '/addContact.' + extension;
 
@@ -175,7 +183,9 @@ function addContact()
 		{
 			if (this.readyState == 4 && this.status == 200)
 			{
-				document.getElementById("contactResult").innerHTML = "Contact has been added";
+				// document.getElementById("contactResult").innerHTML = "Contact has been added";
+				alert("Contact has been added!");
+				window.location.href = "mainPage.html";
 			}
 		};
 		xhr.send(jsonPayload);
@@ -191,12 +201,16 @@ function searchContact()
 {
 	readCookie();
 
-	var srch = document.getElementById("searchText").value;
+	var firstname = document.getElementById("sFirstname").value;
+	var lastname = document.getElementById("sLastname").value;
 	document.getElementById("searchResult").innerHTML = "";
 
 	var contactList = "";
 
-	var jsonPayload = '{"search" : "' + srch + '","userId" : ' + userId + '}';
+	var jsonPayload =
+										'{"firstName" : "' + firstname + '", ' +
+										'"lastName" : "' + lastname + '", ' +
+										'"userId" : "' + userId + '"}';
 	var url = urlBase + '/searchContact.' + extension;
 
 	var xhr = new XMLHttpRequest();
@@ -213,14 +227,14 @@ function searchContact()
 
 				for( var i=0; i<jsonObject.results.length; i++ )
 				{
-					contactList += jsonObject.results[i];
+					contactList += jsonObject.results[i].firstName;
 					if( i < jsonObject.results.length - 1 )
 					{
 						contactList += "<br />\r\n";
 					}
 				}
 
-				document.getElementsByTagName("p")[0].innerHTML = contactList;
+				document.getElementsByID("contactList").innerHTML = contactList;
 			}
 		};
 		xhr.send(jsonPayload);
