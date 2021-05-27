@@ -12,7 +12,7 @@
 	} 
 	else
 	{
-        $sql = "SELECT * FROM Contacts WHERE (firstName like ? or lastname like ?) and UserID=? ";
+        $sql = "SELECT * FROM Contacts WHERE (firstName like ? or lastname like ?) and UserID=? ORDER BY FirstName ASC, LastName ASC";
 		$stmt = $conn->prepare($sql);
 		$search = "%" . $inData["search"] . "%";
 		$stmt->bind_param("sss", $search, $search, $inData["userId"]);
@@ -27,11 +27,8 @@
 				$searchResults .= ",";
 			}
 			$searchCount++;
-			// $searchResults .= '"' . $row["firstName"] . '' . $row["lastName"] . '"';
-            // echo $row["LastName"];
             
             $res = array("id"=>$row["ID"], "firstName"=>$row["FirstName"], "lastName"=>$row["LastName"], "email"=>$row["Email"], "phone"=>$row["Phone"], "userId"=>$row["UserID"]);
-            // echo var_dump($res);
             $searchResults .= json_encode($res);
 		}
 		
