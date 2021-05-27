@@ -206,6 +206,7 @@ function searchContact()
 	document.getElementById("searchResult").innerHTML = "";
 
 	var contactList = "";
+	var nL = "<br />\r\n"
 
 	var jsonPayload =
 										'{"firstName" : "' + firstname + '", ' +
@@ -222,19 +223,21 @@ function searchContact()
 		{
 			if (this.readyState == 4 && this.status == 200)
 			{
-				document.getElementById("searchResult").innerHTML = "Contact(s) has been retrieved";
 				var jsonObject = JSON.parse( xhr.responseText );
+				document.getElementById("searchResult").innerHTML = "Contact(s) has been retrieved";
 
-				for( var i=0; i<jsonObject.results.length; i++ )
+				for(var i = 0; i < jsonObject.results.length; i++)
 				{
-					contactList += jsonObject.results[i].firstName;
-					if( i < jsonObject.results.length - 1 )
-					{
-						contactList += "<br />\r\n";
-					}
+					contactList +=
+					 "================================" + nL +
+					 "Firstname: " + jsonObject.results[i].firstName + nL +
+					 "LastName: " + jsonObject.results[i].lastName + nL +
+					 "================================" + nL +
+					 "Email: " + jsonObject.results[i].email + nL +
+					 "Phone number: " + jsonObject.results[i].phone + nL + nL;
 				}
 
-				document.getElementsByID("contactList").innerHTML = contactList;
+				document.getElementById("contactList").innerHTML = contactList;
 			}
 		};
 		xhr.send(jsonPayload);
