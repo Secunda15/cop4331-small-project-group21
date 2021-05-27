@@ -62,18 +62,21 @@ function saveCookie()
 	var minutes = 20;
 	var date = new Date();
 	date.setTime(date.getTime()+(minutes*60*1000));
-	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
+
+	 document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
 }
 
 function readCookie()
 {
 	userId = -1;
 	var data = document.cookie;
-	var splits = data.split(",");
+	var  splits = data.split(",");
 	for(var i = 0; i < splits.length; i++)
 	{
 		var thisOne = splits[i].trim();
 		var tokens = thisOne.split("=");
+		// console.log(tokens);
+		// console.log(tokens[0]);
 		if( tokens[0] == "firstName" )
 		{
 			firstName = tokens[1];
@@ -84,6 +87,8 @@ function readCookie()
 		}
 		else if( tokens[0] == "userId" )
 		{
+			// console.log(tokens[1]);
+			// console.log(tokens);
 			userId = parseInt( tokens[1].trim() );
 		}
 	}
@@ -94,7 +99,7 @@ function readCookie()
 	}
 	else
 	{
-		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
+	//	document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
 	}
 }
 
@@ -146,6 +151,8 @@ function addUser()
 
 function addContact()
 {
+    readCookie();
+
 	var firstname = document.getElementById("firstname").value;
 	var lastname = document.getElementById("lastname").value
 	var email = document.getElementById("email").value;
@@ -182,6 +189,8 @@ function addContact()
 
 function searchContact()
 {
+	readCookie();
+
 	var srch = document.getElementById("searchText").value;
 	document.getElementById("searchResult").innerHTML = "";
 
