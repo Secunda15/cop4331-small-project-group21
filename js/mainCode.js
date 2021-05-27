@@ -1,4 +1,4 @@
-var urlBase = 'http://www.group21project.com/LAMPAPI';
+var urlBase = 'http://group21project.com/LAMPAPI';
 var extension = 'php';
 
 var userId = 0;
@@ -155,7 +155,7 @@ function addContact()
 	var jsonPayload = '{"firstName" : "' + firstname + '", ' +
 										'"lastName" : "' +	lastname + '", ' +
 										'"email" : "' + email + '", ' +
-										'"phonenumber" : "' + login + '", ' +
+										'"phonenumber" : "' + phonenumber + '", ' +
 										'"userId" : "' + userId + '"}';
 	var url = urlBase + '/addContact.' + extension;
 
