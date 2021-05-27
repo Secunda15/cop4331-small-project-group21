@@ -1,4 +1,4 @@
-var urlBase = 'http://group21project.com/LAMPAPI';
+var urlBase = 'http://www.group21project.com/LAMPAPI';
 var extension = 'php';
 
 var userId = 0;
@@ -44,7 +44,7 @@ function doLogin()
 
 				saveCookie();
 
-				window.location.href = "welcome.html";
+				window.location.href = "mainPage.html";
 
 			}
 		};
@@ -109,17 +109,16 @@ function doLogout()
 
 function addUser()
 {
-	var firstname = document.getElementById("newFirstname").value;
-	var lastname = document.getElementById("newLastname").value
-	// var newEmail = document.getElementById("newEmail").value;
-	var login = document.getElementById("newUsername").value;
-	var password = document.getElementById("newPassword").value;
+	var firstname = document.getElementById("firstname").value;
+	var lastname = document.getElementById("lastname").value
+	var login = document.getElementById("username").value;
+	var password = document.getElementById("password").value;
 	document.getElementById("creationResult").innerHTML = "";
 
-	var jsonPayload = '{"firstName" : "' + newFirstname + '", ' +
-										'"lastName" : "' +	newLastname + '", ' +
-										'"login" : "' + newUsername + '", ' +
-										'"password" : "' + newPassword + '"}';
+	var jsonPayload = '{"firstName" : "' + firstname + '", ' +
+										'"lastName" : "' +	lastname + '", ' +
+										'"login" : "' + login + '", ' +
+										'"password" : "' + password + '"}';
 	var url = urlBase + '/addUser.' + extension;
 
 	var xhr = new XMLHttpRequest();
@@ -132,6 +131,8 @@ function addUser()
 			if (this.readyState == 4 && this.status == 200)
 			{
 				document.getElementById("creationResult").innerHTML = "Account Successfully Added";
+
+				window.location.href = "mainPage.html";
 			}
 		};
 		xhr.send(jsonPayload);
@@ -143,15 +144,20 @@ function addUser()
 
 }
 
-
-/*
 function addContact()
 {
-	var newContact = document.getElementById("colorText").value;
-	document.getElementById("colorAddResult").innerHTML = "";
+	var firstname = document.getElementById("firstname").value;
+	var lastname = document.getElementById("lastname").value
+	var email = document.getElementById("email").value;
+	var phonenumber = document.getElementById("phonenumber").value;
+	document.getElementById("contactResult").innerHTML = "";
 
-	var jsonPayload = '{"color" : "' + newColor + '", "userId" : ' + userId + '}';
-	var url = urlBase + '/AddColor.' + extension;
+	var jsonPayload = '{"firstName" : "' + firstname + '", ' +
+										'"lastName" : "' +	lastname + '", ' +
+										'"email" : "' + email + '", ' +
+										'"phonenumber" : "' + login + '", ' +
+										'"userId" : "' + userId + '"}';
+	var url = urlBase + '/addContact.' + extension;
 
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -162,27 +168,27 @@ function addContact()
 		{
 			if (this.readyState == 4 && this.status == 200)
 			{
-				document.getElementById("colorAddResult").innerHTML = "Color has been added";
+				document.getElementById("contactResult").innerHTML = "Contact has been added";
 			}
 		};
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		document.getElementById("colorAddResult").innerHTML = err.message;
+		document.getElementById("contactResult").innerHTML = err.message;
 	}
 
 }
 
-function searchColor()
+function searchContact()
 {
 	var srch = document.getElementById("searchText").value;
-	document.getElementById("colorSearchResult").innerHTML = "";
+	document.getElementById("searchResult").innerHTML = "";
 
-	var colorList = "";
+	var contactList = "";
 
 	var jsonPayload = '{"search" : "' + srch + '","userId" : ' + userId + '}';
-	var url = urlBase + '/SearchColors.' + extension;
+	var url = urlBase + '/searchContact.' + extension;
 
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -193,27 +199,26 @@ function searchColor()
 		{
 			if (this.readyState == 4 && this.status == 200)
 			{
-				document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
+				document.getElementById("searchResult").innerHTML = "Contact(s) has been retrieved";
 				var jsonObject = JSON.parse( xhr.responseText );
 
 				for( var i=0; i<jsonObject.results.length; i++ )
 				{
-					colorList += jsonObject.results[i];
+					contactList += jsonObject.results[i];
 					if( i < jsonObject.results.length - 1 )
 					{
-						colorList += "<br />\r\n";
+						contactList += "<br />\r\n";
 					}
 				}
 
-				document.getElementsByTagName("p")[0].innerHTML = colorList;
+				document.getElementsByTagName("p")[0].innerHTML = contactList;
 			}
 		};
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		document.getElementById("colorSearchResult").innerHTML = err.message;
+		document.getElementById("searchResult").innerHTML = err.message;
 	}
 
 }
-*/
