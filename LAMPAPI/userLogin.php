@@ -1,6 +1,9 @@
 
 <?php
-
+    header('Access-Control-Allow-Origin: http://www.group21project.com', false);
+    header("Access-Control-Allow-Headers: Content-Type");
+    // header("Access-Control-Allow-Headers: X-Requested-With, Content-Type, Origin, Cache-Control, Pragma, Authorization, Accept, Accept-Encoding");
+    
 	$inData = getRequestInfo();
 	
 	$id = 0;

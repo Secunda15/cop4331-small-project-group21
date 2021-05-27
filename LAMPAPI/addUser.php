@@ -1,5 +1,7 @@
 <?php
     // adds user to the Users table
+    header('Access-Control-Allow-Origin: http://www.group21project.com', false);
+    header("Access-Control-Allow-Headers: Content-Type");
 
     $inData = getRequestInfo();
 
