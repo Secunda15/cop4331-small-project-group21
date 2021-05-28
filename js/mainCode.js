@@ -15,8 +15,6 @@ function doLogin()
 	var password = document.getElementById("loginPassword").value;
 //	var hash = md5( password );
 
-	document.getElementById("loginResult").innerHTML = "";
-
 //	var jsonPayload = '{"login" : "' + login + '", "password" : "' + hash + '"}';
 	var jsonPayload = '{"login" : "' + login + '", "password" : "' + password + '"}';
 	var url = urlBase + '/userLogin.' + extension;
@@ -35,7 +33,7 @@ function doLogin()
 
 				if( userId < 1 )
 				{
-					document.getElementById("loginResult").innerHTML = "Incorrect User/Password";
+					alert("Incorrect Username/Password");
 					return;
 				}
 
@@ -52,7 +50,7 @@ function doLogin()
 	}
 	catch(err)
 	{
-		document.getElementById("loginResult").innerHTML = err.message;
+		alert(err.message);
 	}
 
 }
@@ -118,7 +116,12 @@ function addUser()
 	var lastname = document.getElementById("lastname").value
 	var login = document.getElementById("username").value;
 	var password = document.getElementById("password").value;
-	document.getElementById("creationResult").innerHTML = "";
+
+	if (firstname == "" || lastname == "" || login == "" || password == "")
+	{
+		alert("Entry cannot be blank");
+		return;
+	}
 
 	var jsonPayload =
 	 									'{"firstName" : "' + firstname + '", ' +
@@ -136,7 +139,7 @@ function addUser()
 		{
 			if (this.readyState == 4 && this.status == 200)
 			{
-				document.getElementById("creationResult").innerHTML = "Account Successfully Added";
+				alert("Account Successfully Added");
 
 				window.location.href = "mainPage.html";
 			}
@@ -145,7 +148,7 @@ function addUser()
 	}
 	catch(err)
 	{
-		document.getElementById("creationResult").innerHTML = err.message;
+		alert(err.message);
 	}
 
 }
@@ -158,11 +161,10 @@ function addContact()
 	var lastname = document.getElementById("lastname").value
 	var email = document.getElementById("email").value;
 	var phonenumber = document.getElementById("phonenumber").value;
-	document.getElementById("contactResult").innerHTML = "";
 
 	if (firstname == "" || lastname == "" || email == "" || phonenumber == "")
 	{
-		document.getElementById("contactResult").innerHTML = "Entries cannot be blank";
+		alert("Entries cannot be blank");
 		return;
 	}
 
@@ -192,7 +194,7 @@ function addContact()
 	}
 	catch(err)
 	{
-		document.getElementById("contactResult").innerHTML = err.message;
+		alert(err.message);
 	}
 
 }
