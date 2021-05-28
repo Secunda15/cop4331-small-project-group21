@@ -205,7 +205,6 @@ function searchContact()
 
 	var firstname = document.getElementById("sFirstname").value;
 	var lastname = document.getElementById("sLastname").value;
-	document.getElementById("searchResult").innerHTML = "";
 
 	var contactList = "";
 	var nL = "<br />\r\n"
@@ -226,20 +225,20 @@ function searchContact()
 			if (this.readyState == 4 && this.status == 200)
 			{
 				var jsonObject = JSON.parse( xhr.responseText );
-				document.getElementById("searchResult").innerHTML = "Contact(s) has been retrieved";
 
 				for(var i = 0; i < jsonObject.results.length; i++)
 				{
 					contactList +=
-					 "================================" + nL +
-					 "Firstname: " + jsonObject.results[i].firstName + nL +
-					 "LastName: " + jsonObject.results[i].lastName + nL +
-					 "================================" + nL +
+					 "<div class='container' style='width: 30%'> <div class='row'> <div class='col-lg-3 col-md-2'></div>" +
+					 "<div class='col-lg-6 col-md-8 login-box'><div class='col-lg-12 search-text' style='text-align: left'>" +
+					 "Name: " +jsonObject.results[i].firstName + " " + jsonObject.results[i].lastName + nL +
 					 "Email: " + jsonObject.results[i].email + nL +
-					 "Phone number: " + jsonObject.results[i].phone + nL + nL;
+					 "Phone number: " + jsonObject.results[i].phone +
+					 "</div></div></div></div>";
 				}
+				contactList += "<div class='seperation'></div>";
 
-				document.getElementById("contactList").innerHTML = contactList;
+				document.getElementById("searchResult").innerHTML = contactList;
 			}
 		};
 		xhr.send(jsonPayload);
