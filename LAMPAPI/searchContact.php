@@ -12,6 +12,14 @@
 	} 
 	else
 	{
+        if ($inData["firstName"] === "" && $inData["lastName"] !== "") 
+        {
+            $inData["firstName"] = "!";
+        }
+        if ($inData["lastName"] === "" && $inData["firstName"] !== "") {
+            $inData["lastName"] = "!";
+        }
+        
         $sql = "SELECT * FROM Contacts WHERE (firstName like ? or lastname like ?) and UserID=? ORDER BY FirstName ASC, LastName ASC";
 		$stmt = $conn->prepare($sql);
 		$first = "%" . $inData["firstName"] . "%";

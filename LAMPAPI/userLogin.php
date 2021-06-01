@@ -24,6 +24,9 @@
 
 		if( $row = $result->fetch_assoc()  )
 		{
+            $nstmt = $conn->prepare("UPDATE Users SET DateLastLoggedIn=now() WHERE ID=?");
+            $nstmt->bind_param("s", $row['ID']);
+            $nstmt->execute();
 			returnWithInfo( $row['firstName'], $row['lastName'], $row['ID'] );
 		}
 		else

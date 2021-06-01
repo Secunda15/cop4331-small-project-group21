@@ -4,7 +4,6 @@
     // header("Access-Control-Allow-Headers: Content-Type");
 
     $inData = getRequestInfo();
-
     $id = $inData["id"];
 
     $conn = new mysqli("localhost", "group21", "4331", "COP4331");

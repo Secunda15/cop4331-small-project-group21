@@ -22,7 +22,17 @@ if ($conn->connect) {
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("sssss", $firstname, $lastname, $email, $phone, $id);
     $stmt->execute();
-    returnWithError("");
+    $result = $stmt->get_result();
+
+    if ($row = $result->fetch_assoc()) 
+    {
+        returnWithError("");
+    }
+    else 
+    {
+        returnWithError("Could not update contact");
+    }
+    
 
     $stmt->close();
     $conn->close();
