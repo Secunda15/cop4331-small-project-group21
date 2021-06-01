@@ -10,7 +10,7 @@
     else 
     {
         // Delete the specified contact
-        $sql = "DELETE FROM Contacts WHERE ID = ?";
+        $sql = "DELETE FROM Contacts WHERE ID = $id";
 		
 		// Determine if operation was successful
 		// If it wasn't successful...
