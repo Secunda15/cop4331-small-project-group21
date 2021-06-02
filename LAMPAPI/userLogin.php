@@ -22,7 +22,7 @@
 		$stmt->execute();
 		$result = $stmt->get_result();
 
-		if( $row = $result->fetch_assoc()  )
+		if( $row = $result->fetch_assoc() )
 		{
             $nstmt = $conn->prepare("UPDATE Users SET DateLastLoggedIn=now() WHERE ID=?");
             $nstmt->bind_param("s", $row['ID']);
