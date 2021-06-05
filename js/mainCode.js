@@ -4,6 +4,7 @@ var extension = 'php';
 var userId = 0;
 var firstName = "";
 var lastName = "";
+var currContId = "";
 
 function doLogin()
 {
@@ -185,7 +186,6 @@ function addContact()
 		{
 			if (this.readyState == 4 && this.status == 200)
 			{
-				// document.getElementById("contactResult").innerHTML = "Contact has been added";
 				alert("Contact has been added!");
 				window.location.href = "mainPage.html";
 			}
@@ -226,14 +226,25 @@ function searchContact()
 			{
 				var jsonObject = JSON.parse( xhr.responseText );
 
+				if (jsonObject.results == null)
+				{
+					alert("No contacts found");
+					window.location.href = "mainPage.html";
+				}
+
 				for(var i = 0; i < jsonObject.results.length; i++)
 				{
+					var contact = jsonObject.results[i];
 					contactList +=
-					 "<div class='container' style='width: 30%'> <div class='row'> <div class='col-lg-3 col-md-2'></div>" +
-					 "<div class='col-lg-6 col-md-8 login-box'><div class='col-lg-12 search-text' style='text-align: left'>" +
-					 "Name: " +jsonObject.results[i].firstName + " " + jsonObject.results[i].lastName + nL +
-					 "Email: " + jsonObject.results[i].email + nL +
-					 "Phone number: " + jsonObject.results[i].phone +
+					 "<div class='container' style='width: 70%'> <div class='row'> <div class='col-lg-3 col-md-2'></div>" +
+					 "<div class='col-lg-6 col-md-8 login-box'><div class='col-lg-12 search-text' style='text-align: left; font-size: 20px;'>" +
+					 "Name: " + contact.firstName + " " + contact.lastName + nL +
+					 "Email: " + contact.email + nL +
+					 "Phone number: " + contact.phone +
+					 "<div class='col-md-12 loginbttm'> <div class='col-md-6 login-btm login-text'> </div> <div class='col-md-6 login-btm login-button'>" +
+					 "<button type='submit' class='btn btn-outline-primary btn-sm' onclick='editContactPage(" + contact.id + ");'>Edit</button></div></div>" +
+					 "<div class='col-md-12 loginbttm'> <div class='col-md-6 login-btm login-text'> </div> <div class='col-md-6 login-btm login-button'>" +
+		       "<button type='submit' onclick='deleteContact(" + contact.id + ");' class='btn btn-outline-primary btn-sm'>Delete</button></div></div>" +
 					 "</div></div></div></div>";
 				}
 				contactList += "<div class='seperation'></div>";
@@ -246,6 +257,86 @@ function searchContact()
 	catch(err)
 	{
 		document.getElementById("searchResult").innerHTML = err.message;
+	}
+
+}
+
+function deleteContact(contactId)
+{
+	readCookie();
+
+	var jsonPayload =	'{"id" : "' + contactId + '"}';
+	var url = urlBase + '/deleteContacts.' + extension;
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function()
+		{
+			if (this.readyState == 4 && this.status == 200)
+			{
+				let result = confirm('Are you sure you want to delete this contact?');
+				if (!result)
+					return;
+				alert("Contact has been deleted!");
+				window.location.href = "mainPage.html";
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		alert(err.message);
+	}
+}
+
+function editContactPage(contactId)
+{
+	window.location.href = "editContact.html";
+	localStorage.setItem(currContId, contactId);
+}
+
+function editContact()
+{
+	var firstname = document.getElementById("firstname").value;
+	var lastname = document.getElementById("lastname").value
+	var email = document.getElementById("email").value;
+	var phonenumber = document.getElementById("phonenumber").value;
+
+	if (firstname == "" || lastname == "" || email == "" || phonenumber == "")
+	{
+		alert("Entries cannot be blank");
+		return;
+	}
+
+	var jsonPayload =
+										'{"id" : "' + localStorage.getItem(currContId) + '", ' +
+										'"firstName" : "' +	firstname + '", ' +
+										'"lastName" : "' + lastname + '", ' +
+										'"phone" : "' + phonenumber + '", ' +
+										'"email" : "' + email + '"}';
+	var url = urlBase + '/updateContact.' + extension;
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function()
+		{
+			if (this.readyState == 4 && this.status == 200)
+			{
+				alert("Contact has been edited!");
+				window.location.href = "mainPage.html";
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		alert(err.message);
 	}
 
 }
