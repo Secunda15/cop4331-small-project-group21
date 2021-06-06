@@ -12,30 +12,14 @@
   <title>Main Page</title>
 </head>
 
+
   <body class="body-type">
+
     <div class="container">
+
     <div class="row">
     <div class="col-lg-3 col-md-2"></div>
 
-      <div class="col-lg-6 col-md-8 login-box">
-      <div class="seperation"></div>
-      <div class="col-lg-12 login-title">
-      Add Contact
-      </div>
-      <div class="seperation"></div>
-      <div class="col-lg-12 loginbttm">
-      <div class="col-lg-6 login-btm login-text">
-      </div>
-      <div class="text-center col-lg-6 login-button">
-        <button type="submit" onclick="window.location.href='contactCreation.html'" class="btn btn-outline-primary btn-lg btn-block" style='float: center;'>Add</button>
-      </div>
-      </div>
-    </div>
-    </div>
-
-    <div class="container">
-    <div class="row">
-    <div class="col-lg-3 col-md-2"></div>
 
       <div class="col-lg-6 col-md-8 login-box">
         <div class="seperation"></div>
@@ -48,14 +32,14 @@
       <div class="col-lg-12 login-form">
 
         <div class="form-group">
-        <label class="form-control-label">Firstname</label>
+        <label class="form-control-label">First Name</label>
         <div>
         <input type="text" id="sFirstname">
         </div>
         </div>
 
         <div class="form-group">
-        <label class="form-control-label">Lastname</label>
+        <label class="form-control-label">Last Name</label>
         <div>
         <input type="text" id="sLastname">
         </div>
@@ -68,6 +52,23 @@
         <button type="submit" onclick="searchContact();" class="btn btn-outline-primary" style="float: center;">Search</button>
         </div>
         </div>
+
+        <div class="col-lg-12 loginbttm">
+        <div class="col-lg-6 login-btm login-text">
+        </div>
+        <div class="text-center col-lg-6 login-button">
+          <button type="submit" onclick="window.location.href='contactCreation.html'" class="btn btn-outline-primary" style='float: center;'>Add Contact</button>
+        </div>
+        </div>
+
+        <div class="col-lg-12 loginbttm">
+        <div class="col-lg-6 login-btm login-text">
+        </div>
+        <div class="text-center col-lg-6 login-button">
+        <button type="submit" onclick="window.location.href='index.html'" class="btn btn-outline-primary">Logout</button>
+        </div>
+        </div>
+        <span id="noResult" class="search-text"></span>
 
       </div>
       </div>

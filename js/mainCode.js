@@ -14,11 +14,12 @@ function doLogin()
 
 	var login = document.getElementById("loginUsername").value;
 	var password = document.getElementById("loginPassword").value;
-//	var hash = md5( password );
+	var hash = md5( password );
 
-//	var jsonPayload = '{"login" : "' + login + '", "password" : "' + hash + '"}';
-	var jsonPayload = '{"login" : "' + login + '", "password" : "' + password + '"}';
+	var jsonPayload = '{"login" : "' + login + '", "password" : "' + hash + '"}';
 	var url = urlBase + '/userLogin.' + extension;
+
+	var str = "Incorrect Username/Password";
 
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -34,7 +35,7 @@ function doLogin()
 
 				if( userId < 1 )
 				{
-					alert("Incorrect Username/Password");
+					document.getElementById("result").innerHTML = str;
 					return;
 				}
 
@@ -117,10 +118,13 @@ function addUser()
 	var lastname = document.getElementById("lastname").value
 	var login = document.getElementById("username").value;
 	var password = document.getElementById("password").value;
+	var hash = md5( password );
+
+	var str = "Entries cannot be blank";
 
 	if (firstname == "" || lastname == "" || login == "" || password == "")
 	{
-		alert("Entry cannot be blank");
+		document.getElementById("result").innerHTML = str;
 		return;
 	}
 
@@ -128,7 +132,7 @@ function addUser()
 	 									'{"firstName" : "' + firstname + '", ' +
 										'"lastName" : "' +	lastname + '", ' +
 										'"login" : "' + login + '", ' +
-										'"password" : "' + password + '"}';
+										'"password" : "' + hash + '"}';
 	var url = urlBase + '/addUser.' + extension;
 
 	var xhr = new XMLHttpRequest();
@@ -140,8 +144,6 @@ function addUser()
 		{
 			if (this.readyState == 4 && this.status == 200)
 			{
-				alert("Account Successfully Added");
-
 				window.location.href = "mainPage.html";
 			}
 		};
@@ -163,9 +165,11 @@ function addContact()
 	var email = document.getElementById("email").value;
 	var phonenumber = document.getElementById("phonenumber").value;
 
+	var str = "Entries cannot be blank";
+
 	if (firstname == "" || lastname == "" || email == "" || phonenumber == "")
 	{
-		alert("Entries cannot be blank");
+		document.getElementById("result").innerHTML = str;
 		return;
 	}
 
@@ -186,7 +190,6 @@ function addContact()
 		{
 			if (this.readyState == 4 && this.status == 200)
 			{
-				alert("Contact has been added!");
 				window.location.href = "mainPage.html";
 			}
 		};
@@ -207,6 +210,7 @@ function searchContact()
 	var lastname = document.getElementById("sLastname").value;
 
 	var contactList = "";
+	var noResult = "No results"
 	var nL = "<br />\r\n"
 
 	var jsonPayload =
@@ -228,8 +232,8 @@ function searchContact()
 
 				if (jsonObject.results == null)
 				{
-					alert("No contacts found");
 					window.location.href = "mainPage.html";
+					document.getElementById("noResult").innerHTML = noResult;
 				}
 
 				for(var i = 0; i < jsonObject.results.length; i++)
@@ -280,7 +284,6 @@ function deleteContact(contactId)
 				let result = confirm('Are you sure you want to delete this contact?');
 				if (!result)
 					return;
-				alert("Contact has been deleted!");
 				window.location.href = "mainPage.html";
 			}
 		};
@@ -305,9 +308,11 @@ function editContact()
 	var email = document.getElementById("email").value;
 	var phonenumber = document.getElementById("phonenumber").value;
 
+	var str = "Entries cannot be blank";
+
 	if (firstname == "" || lastname == "" || email == "" || phonenumber == "")
 	{
-		alert("Entries cannot be blank");
+		document.getElementById("result").innerHTML = str;
 		return;
 	}
 
@@ -328,7 +333,6 @@ function editContact()
 		{
 			if (this.readyState == 4 && this.status == 200)
 			{
-				alert("Contact has been edited!");
 				window.location.href = "mainPage.html";
 			}
 		};
