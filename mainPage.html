@@ -10,6 +10,39 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <title>Main Page</title>
+        
+<style>
+.item1 { grid-area: letter; }
+.item2 { grid-area: name; }
+.item3 { grid-area: email; }
+.item4 { grid-area: phone; }
+.item5 { grid-area: footer; }
+.item6 { grid-area: free;}
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'letter free free free free free'
+    'name name name name name name'
+    'email email email phone phone phone'
+    'footer footer footer footer footer footer';
+  grid-gap: 10px;;
+  padding: 5;
+  width: 100%;
+  align-self: center;
+}
+
+.grid-container > div {
+  text-align: center;
+  padding: auto;
+  font-size: 20px;
+}
+
+    
+</style>
+    
+    
+    
 </head>
 
 
@@ -31,19 +64,14 @@
       <div class="col-lg-12 login-form">
       <div class="col-lg-12 login-form">
 
-        <div class="form-group">
-        <label class="form-control-label">First Name</label>
-        <div>
-        <input type="text" id="sFirstname">
-        </div>
-        </div>
-
-        <div class="form-group">
-        <label class="form-control-label">Last Name</label>
-        <div>
-        <input type="text" id="sLastname">
-        </div>
-        </div>
+           <div class="input-field">
+            <input type="text" id="sFirstname" required />
+            <label for="name">First Name:</label>
+  </div>
+          <div class="input-field">
+            <input type="text" id="sLastname" required />
+            <label for="name">Last Name:</label>
+  </div>
 
         <div class="col-lg-12 loginbttm">
         <div class="col-lg-6 login-btm login-text">
@@ -76,7 +104,22 @@
   </div>
   </div>
 
-  <span id="searchResult"></span>
+  <span id="searchResult">
+      
+      <div class='container' style='width: 100%'> 
+<div class='card'>
+      <div class="grid-container">
+  <div class="item1">S</div>
+  <div class="item2">"Name: " + contact.firstName + " " + contact.lastName</div>
+  <div class="item3">"Email: " + contact.email</div>  
+  <div class="item4">"Phone number: " + contact.phone </div>
+  <div class="item5"><button type='submit' id = 'btn-1' class='btn btn-outline-primary btn-sm' onclick='editContactPage(" + contact.id + ");'>Edit</button> <button type='submit' onclick='deleteContact(" + contact.id + ");' class='btn btn-outline-primary btn-sm' id = 'btn-2'>Delete</button>
+          </div>
+</div>
+      </div>
+          </div>
+      
+      </span>
 
 
   </body>
