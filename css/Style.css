@@ -1,36 +1,64 @@
+@font-face { font-family: 'Curly' ; src: url(fonts/curly.ttf); } 
+@font-face { font-family: 'Round' ; src: url(fonts/round.ttf); } 
+
 
 .body-type{
-    background: #222D32;
-    font-family: 'Roboto', sans-serif;
+ background: radial-gradient(#63a8ff, #c7b6fa);
+font-family: 'Round', sans-serif;
 }
 
 .login-box{
     margin-top: 75px;
     height: auto;
-    background: #1A2226;
+    background: #fcffff;
     text-align: center;
+    border-radius: 1rem;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
+
+.card{
+  margin: 20px;
+  width: 500px;
+  min-height: 200px;
+  border-radius: 10px;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
+  transition: all 0.5s;
+  align-self: center;
+  align-items: flex-start;
+}
+
+#btn-1 , #btn-2 {
+display:inline-block;
+}
 .login-key{
     height: 100px;
     font-size: 80px;
     line-height: 100px;
-    background: -webkit-linear-gradient(#27EF9F, #0DB8DE);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .login-title{
-    margin-top: 15px;
+    margin-top: 0px;
     text-align: center;
-    font-size: 30px;
+    font-size: 50px;
     letter-spacing: 2px;
-    margin-top: 15px;
     font-weight: bold;
-    color: #ECF0F5;
+    color: #c6b3ff;
+    text-shadow: .9px .9px #cce3ff;
+    font-family: 'Curly', sans-serif;;
 }
 
+.login-sub{
+    margin-top: 0px;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    color: #d0d3d6;
+    font-family: 'Round', sans-serif;;
+}
 .search-text{
   font-size: 15px;
   color: #ECF0F5;
@@ -42,11 +70,6 @@
 }
 
 input[type=text]{
-    background-color: #1A2226;
-    border: none;
-    border-bottom: 2px solid #0DB8DE;
-    border-top: 0px;
-    border-radius: 0px;
     font-weight: bold;
     outline: 0;
     margin-bottom: 20px;
@@ -56,15 +79,10 @@ input[type=text]{
 }
 
 input[type=password]{
-    background-color: #1A2226;
-    border: none;
-    border-bottom: 2px solid #0DB8DE;
-    border-top: 0px;
-    border-radius: 0px;
     font-weight: bold;
     outline: 0;
-    padding-left: 0px;
     margin-bottom: 20px;
+    padding-left: 0px;
     color: #ECF0F5;
     width: 100%;
 }
@@ -84,29 +102,91 @@ label{
 }
 
 .form-control-label{
-    font-size: 10px;
+    font-size: 14px;
     color: #6C6C6C;
     font-weight: bold;
     letter-spacing: 1px;
+    font-family: 'Round', sans-serif;;
 }
 
+.form-control{
+    font-size: 10px;
+    color: #b0b0b0;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-family: 'Round', sans-serif;;
+}
+
+.input-field {
+  position: relative;
+  line-height: 20px;
+}
+label {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  color: #8f8f8f;
+  transition: 0.2s all;
+  cursor: default;
+}
+input {
+  width: 100%;
+    border: 2.5px solid #dde5f0;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	font-size: 13px;
+	padding: 4px 4px;
+	outline: 0;
+	-webkit-appearance: none;
+}
+input:focus,
+input:valid {
+    color: #aca2b3;
+  border-color: #c7b6fa;
+}
+input:focus~label,
+input:valid~label {
+  font-size: 14px;
+  top: -20px;
+    left: -2;
+  color: #c7b6fa;
+}
+
+
 .btn-outline-primary{
-    border-color: #0DB8DE;
-    color: #0DB8DE;
+    border: .2px solid #c7b6fa;
+    border-color: #c7b6fa;
+    color: #c7b6fa;
     border-radius: 0px;
     font-weight: bold;
     letter-spacing: 1px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    border-radius: 37px;
+    font-family: 'Round', sans-serif;;
+    
 }
 
 .btn-outline-primary:hover{
-    background-color: #0DB8DE;
+     border-color: #c7b6fa;
+    background: radial-gradient(#63a8ff, #c7b6fa);
     right: 0px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.4);
+    transform: scale(1.03);
+    transition:all 0.3s ease-in-out;
+    font-family: 'Round', sans-serif;;
 }
 
 .login-btm{
     margin: auto;
     margin-top: 10px;
+    align-content: 
+}
+
+.login-btm-card{
+    margin-left: 100;
+    margin-top: 10px;
+    align-content: center;
 }
 
 .login-button{
@@ -115,16 +195,24 @@ label{
     width: auto;
     margin: auto;
     margin-bottom: 20px;
+    font-family: 'Round', sans-serif;;
 }
 
 .login-text{
     padding-left: 0px;
-    color: #A2A4A4;
+    color: 	#FFC0CB;
+    font-family: 'Round', sans-serif;;
+}
+
+.card-letter{
+  font-size: 45px;
+text-align: left;
 }
 
 .loginbttm{
     padding: 0px;
 }
+
 
 .seperation{
     padding-top: 50px;
@@ -133,4 +221,9 @@ label{
 .small-seperation
 {
   padding-top: 20px;
+}
+
+.form-seperation
+{
+  padding-top: 4px;
 }
